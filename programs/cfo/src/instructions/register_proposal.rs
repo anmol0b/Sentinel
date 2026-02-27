@@ -19,7 +19,7 @@ pub fn register_proposal(
     metrics.late_vote_ratio_bps = 0;
     metrics.bump = *ctx.bumps.get("participation_metrics").unwrap();
 
-    risk.risk_level = 0; // LOW
+    risk.risk_level = 0; 
     risk.computed_at = Clock::get()?.unix_timestamp;
     risk.bump = *ctx.bumps.get("risk_signal").unwrap();
 
