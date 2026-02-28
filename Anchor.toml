@@ -12,7 +12,7 @@ cfo = "B2zKeoeD1XQu7JqnpcPDiJXowsA9MEhDvZWkYBum5Rcj"
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "localnet"
+cluster = "devnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]

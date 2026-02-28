@@ -123,8 +123,8 @@ Program deployed on Solana Devnet.
 
 Program ID:
 
-PASTE_PROGRAM_ID_HERE
+B2zKeoeD1XQu7JqnpcPDiJXowsA9MEhDvZWkYBum5Rcj
 
 Explorer:
 
-https://explorer.solana.com/address/PASTE_PROGRAM_ID_HERE?cluster=devnet
+https://explorer.solana.com/address/B2zKeoeD1XQu7JqnpcPDiJXowsA9MEhDvZWkYBum5Rcj?cluster=devnet
