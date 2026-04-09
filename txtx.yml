@@ -1,6 +1,6 @@
 ---
-name: cfo
-id: cfo
+name: sentinel
+id: sentinel
 runbooks:
   - name: deployment
     description: Deploy programs

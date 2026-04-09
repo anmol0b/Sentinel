@@ -3,7 +3,7 @@ use anchor_lang::prelude::*;
 declare_id!("B2zKeoeD1XQu7JqnpcPDiJXowsA9MEhDvZWkYBum5Rcj");
 
 #[program]
-pub mod cfo {
+pub mod sentinel {
     use super::*;
 
     pub fn register_proposal(

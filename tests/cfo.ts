@@ -1,13 +1,13 @@
 import * as anchor from "@coral-xyz/anchor";
 import { Program } from "@coral-xyz/anchor";
-import { Cfo } from "../target/types/cfo";
+import { sentinel } from "../target/types/sentinel";
 import { expect } from "chai";
 
-describe("cfo", () => {
+describe("sentinel", () => {
   const provider = anchor.AnchorProvider.env();
   anchor.setProvider(provider);
 
-  const program = anchor.workspace.cfo as Program<Cfo>;
+  const program = anchor.workspace.sentinel as Program<sentinel>;
 
   it("registers proposal and updates risk", async () => {
 
