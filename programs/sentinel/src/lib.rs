@@ -1,6 +1,20 @@
 use anchor_lang::prelude::*;
 
+
 declare_id!("B2zKeoeD1XQu7JqnpcPDiJXowsA9MEhDvZWkYBum5Rcj");
+
+#[cfg(not(feature = "no-entrypoint"))]
+use solana_security_txt::security_txt;
+
+#[cfg(not(feature = "no-entrypoint"))]
+security_txt! {
+    name: "Sentinel",
+    project_url: "https://github.com/anmol0b/sentinel",
+    contacts: "email:anmolbhardwajinv@gmail.com, x:https://x.com/anmol0b",
+    source_code: "https://github.com/anmol0b/sentinel",
+    description: "Advisory-only on-chain governance risk oracle for Solana DAOs. Detects coordination failures via late-vote concentration.",
+    preferred_languages: "en",
+}
 
 #[program]
 pub mod sentinel {
@@ -12,11 +26,9 @@ pub mod sentinel {
         voting_start_ts: i64,
         voting_end_ts: i64,
     ) -> Result<()> {
-
         let proposal = &mut ctx.accounts.proposal_analysis;
         let metrics = &mut ctx.accounts.participation_metrics;
         let risk = &mut ctx.accounts.risk_signal;
-
 
         proposal.proposal_pubkey = proposal_pubkey;
         proposal.voting_start_ts = voting_start_ts;
@@ -40,7 +52,6 @@ pub mod sentinel {
         total_votes: u64,
         late_votes: u64,
     ) -> Result<()> {
-
         let metrics = &mut ctx.accounts.participation_metrics;
         let risk = &mut ctx.accounts.risk_signal;
 
@@ -48,8 +59,7 @@ pub mod sentinel {
         metrics.late_votes = late_votes;
 
         if total_votes > 0 {
-            metrics.late_vote_ratio_bps =
-                ((late_votes * 10_000) / total_votes) as u16;
+            metrics.late_vote_ratio_bps = ((late_votes * 10_000) / total_votes) as u16;
         } else {
             metrics.late_vote_ratio_bps = 0;
         }
@@ -68,13 +78,11 @@ pub mod sentinel {
 
         Ok(())
     }
-
 }
 
 #[derive(Accounts)]
 #[instruction(proposal_pubkey: Pubkey)]
 pub struct RegisterProposal<'info> {
-
     #[account(mut)]
     pub signer: Signer<'info>,
 
@@ -110,7 +118,6 @@ pub struct RegisterProposal<'info> {
 
 #[derive(Accounts)]
 pub struct UpdateMetrics<'info> {
-
     #[account(mut)]
     pub signer: Signer<'info>,
 
@@ -119,7 +126,9 @@ pub struct UpdateMetrics<'info> {
 
     #[account(mut)]
     pub risk_signal: Account<'info, RiskSignal>,
-}#[account]
+}
+
+#[account]
 pub struct ProposalAnalysis {
     pub proposal_pubkey: Pubkey,
     pub voting_start_ts: i64,
@@ -145,7 +154,7 @@ impl ParticipationMetrics {
 
 #[account]
 pub struct RiskSignal {
-    pub risk_level: u8,     // 0=LOW,1=MEDIUM,2=HIGH
+    pub risk_level: u8,     // 0=LOW, 1=MEDIUM, 2=HIGH
     pub computed_at: i64,
     pub bump: u8,
 }
